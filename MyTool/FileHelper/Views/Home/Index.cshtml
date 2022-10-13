@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <form enctype="multipart/form-data" method="post">
+        <input type="file" name="files"/>
+        <input type="text" name="filename" id="filename">
+        <input type="submit" value="送出" />
+    </form>
+</div>
+
+@section Scripts{
+<script src="~/js/FileHelper.js"></script>
+}
