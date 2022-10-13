@@ -21,6 +21,7 @@ namespace UploadHelper.Helper
                 Directory.CreateDirectory(uploadFolderName);
             }
             return Path.Combine(uploadFolderName, fileName);
+
         }
 
         private static void SaveFile(string fileFullName, string base64Str)
