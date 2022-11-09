@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UploadHelper.Helper;
 using UploadHelper.Models;
+using UploadHelper.Unit.SaveFileByBsae64Unit;
 
 namespace UploadHelper.Controllers
 {
@@ -17,6 +18,7 @@ namespace UploadHelper.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly ISaveFileService _saveFileService;
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -33,8 +35,8 @@ namespace UploadHelper.Controllers
         {
             string fileName = "test.jpg";
             string uploadFolder = Path.Combine("D:", $"test",Guid.NewGuid().ToString());            
-            string base64str = filename;            
-            FileHelper.SaveFileByBase64(uploadFolder, fileName, base64str);
+            string base64str = filename;
+            _saveFileService.UpLoadFile(fileName, base64str);
             return View();
         }
 
