@@ -1,0 +1,106 @@
+﻿@model UBOT_CMS.Services.DTO.CarouselInfoRsp
+
+@{
+    string ShowTitle = string.Empty;
+
+    if (Model!=null&&!string.IsNullOrEmpty(Model.carousel_sid))
+        ShowTitle = "修改圖片";
+    else
+        ShowTitle = "新增圖片";
+
+    ViewData["Title"] = ShowTitle;
+}
+
+
+<h1>輪播牆管理-@ShowTitle</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddOrModifyPicture">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" hidden>
+                <label asp-for="carousel_sid" class="control-label"></label>
+                <input asp-for="carousel_sid" class="form-control" />
+                <span asp-validation-for="carousel_sid" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="uploadFile_Sid" class="control-label"></label>
+                <input asp-for="uploadFile_Sid" class="form-control" />
+                <span asp-validation-for="uploadFile_Sid" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="picDescript" class="control-label"></label>
+                <input asp-for="picDescript" class="form-control" />
+                <span asp-validation-for="picDescript" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="pichref" class="control-label"></label>
+                <input asp-for="pichref" class="form-control" />
+                <span asp-validation-for="pichref" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="PicUsed" class="control-label"></label>
+                <select asp-for="PicUsed" class="form-select">
+                    <option value="1">上架</option>
+                    <option value="0">下架</option>
+                </select>
+                <span asp-validation-for="PicUsed" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label for="formFile" class="form-label">上傳圖片</label>
+                <input type="file" name="picFile" class="form-control" accept=".jpg,.png" />
+                <input type="hidden" name="picFileStr" />
+            </div>
+            <div class="form-group mb-3">
+                @{if (Model != null)
+                    {
+                        <label>檔案名稱：@Model.picFileName@Model.picFileExtensionName</label>
+                    }
+                }
+            </div>
+            <div class="form-group mb-3">
+                <input type="submit" id="submitbtn" value="送出" onclick="return DisplayProgressMessage(this, 'Saving...');" class="btn btn-primary btn-lg" />
+                <a class="btn btn-secondary  btn-lg" asp-area="" asp-action="CarouselTable" asp-route-picUsed="">取消</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("_Loading")
+
+@section Scripts{
+    <script src="~/js/FileHelper.js"></script>
+    <script>
+        $('input[name="picFile"]').change(function () {
+            var files = $(this)[0].files;
+            var extendname = $(this).val().split(".")[1].toLowerCase();
+            var size = 0;
+            for (var i = 0; i < files.length; i++) {
+                size = size + this.files[i].size;
+            }
+            if (extendname != 'jpg' && extendname != 'png') {
+                toastr.error('您選擇上傳的檔案副檔名錯誤，請重新選擇！');
+                $('#submitbtn').hide();
+            }
+            else if (size > 1024 * 1024 * 2) {
+                toastr.error('您選擇上傳的檔案大小大於2MB，請重新選擇！');
+                $('#submitbtn').hide();
+            } else {
+                $('#submitbtn').show();
+            }
+        })
+
+
+    </script>
+    <script>
+        toastr.options = {
+            closeButton: true,
+            debug: false,
+            progressBar: true,
+            positionClass: "toast-top-center"
+        }
+    </script>
+
+}
+

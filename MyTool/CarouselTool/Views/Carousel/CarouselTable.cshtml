@@ -1,0 +1,248 @@
+﻿@model IEnumerable<UBOT_CMS.Services.DTO.CarouselRsp>
+
+@{
+    ViewData["Title"] = "CarouselTable";
+    var showrole = ViewData["ShowRole"] ?? string.Empty;
+    string ShowTitle = string.Empty;
+    switch (showrole.ToString())
+    {
+        case "0":
+            ShowTitle = "-下架搜尋";
+            break;
+        case "1":
+            ShowTitle = "-上架搜尋";
+            break;
+        default:
+            ShowTitle = "-總覽";
+            break;
+    }
+}
+<style>
+    .dataTables_wrapper {
+        font-size: 14px;
+    }
+
+    th {
+        font-size: 14px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    td {
+        font-size: 14px;
+    }
+</style>
+
+<h1>輪播牆總覽@(ShowTitle)</h1>
+
+<p style="display:inline-block">
+    <a class="nav-link text-white btn btn-success btn-sm bx bx-save" asp-area="" asp-action="AddOrModifyPicture"}>新增圖片</a>
+</p>
+@{ if (showrole.ToString() != "")
+    {
+        <p style="display:inline-block">
+            <a class="nav-link text-white btn btn-success btn-sm bx bx-spreadsheet" asp-area="" asp-action="CarouselTable" asp-route-picUsed="">總覽搜尋</a>
+        </p>
+    }
+}
+@{ if (showrole.ToString() != "1")
+    {
+        <p style="display:inline-block">
+            <a class="nav-link text-white btn btn-success btn-sm bx bx-sort-up" asp-area="" asp-action="CarouselTable" asp-route-picUsed="1">上架搜尋</a>
+        </p>
+    }
+}
+@{ if (showrole.ToString() != "0")
+    {
+        <p style="display:inline-block">
+            <a class="nav-link text-white btn btn-success btn-sm bx bx-sort-down" asp-area="" asp-action="CarouselTable" asp-route-picUsed="0">下架搜尋</a>
+        </p>
+    }
+}
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th hidden>
+                    @Html.DisplayName("輪播牆順序")
+                </th>
+                <th>
+                    功能
+                </th>
+                <th width="500px">
+                    @Html.DisplayNameFor(model => model.picFileBase64Str)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.picDescript)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pichref)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PicUsed)
+                </th>
+
+                @{ if (showrole.ToString() == "1")
+                    {
+                        <th>
+                            順序調整
+                        </th>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td hidden>
+                        <span data-id="@item.sid"></span>
+                    </td>
+                    <td>
+                        <form method="post" id="delform@(item.sid)" asp-action="CarouselInfoDelete" style="display:inline-block">
+                            @Html.ActionLink("修改", "AddOrModifyPicture", new { sid = item.sid }, new { @class = "btn btn-primary btn-sm bx bx-edit", @style = "display:inline-block" }) |
+                            @Html.Hidden("sid", item.sid)
+                            <button  type="button"  onclick="delconfirm('@(item.sid)')" class="btn btn-danger btn-sm bx bx-eraser" style="display:inline-block">刪除</button>
+                        </form>
+                    </td>
+                    <td>
+                        <img src="@item.picFileBase64Str" class="img-thumbnail" style="max-width:20%;">
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.picDescript)
+                    </td>
+                    <td>
+                        <a href="@item.pichref" target="_blank">點我連結</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.picUsedDescript)
+                    </td>
+                    @{if (showrole.ToString() == "1")
+                        {
+                            <td>
+                                <a href="#" onclick="return false;" class="up fs-3 text-primary">▲</a>
+                                <a href="#" onclick="return false;" class="down fs-3 text-danger">▼</a>
+                            </td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+
+    @section Scripts{
+        <script>
+        $(function () {
+            //上下箭頭初始化
+            $(".table tr:eq(1) .up,.table tr:last .down").hide();
+
+            //onclick
+
+            $(".up,.down").click(function () {
+                $(".table .up,.table .down").show();
+
+                var row = $(this).parents("tr:first");
+                if ($(this).is(".up")) {
+                    row.insertBefore(row.prev());
+                } else {
+                    row.insertAfter(row.next());
+                }
+                $(".table tr:eq(1) .up,.table tr:last .down").hide();
+
+                ModifyCarouselOrder();
+            });
+        });
+
+
+        function ModifyCarouselOrder() {
+            var Tbdata = [];
+            var tr_length = $('.table tr').length;
+            for (var i = 0; i < tr_length; i++) {
+                if (i >= 1) { //從第二列開始取值
+                    let v = 0;
+                    let imageorder = i;
+                    let carouselsid = $('.table tr:eq(' + i + ') td:eq(' + v + ') span').data('id');
+                    Tbdata.push({ carousel_sid: carouselsid, image_Order: imageorder})
+                }
+            }
+            AjaxModifyCarouselOrder(Tbdata);
+        };
+
+        function AjaxModifyCarouselOrder(obj) {
+            $.ajax({
+                url: '@Url.Action("ModifyCarouselOrder", "Carousel")',
+                type: 'Post',
+                data: { vm: obj },
+                success: function (r) {},
+            })
+        }
+
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $('.table').DataTable();
+            });
+
+            $(document).ready(function () {
+                $(".table").DataTable({
+                    language: {
+                        "sProcessing": "處理中...",
+                        "sLengthMenu": "顯示  _MENU_  項結果",
+                        "sZeroRecords": "沒有匹配結果",
+                        "sInfo": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                        "sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+                        "sInfoFiltered": "(由 _MAX_ 項結果過濾)",
+                        "sInfoPostFix": "",
+                        "sSearch": "搜索:",
+                        "sUrl": "",
+                        "emptyTable": "查無資料",
+                        "sLoadingRecords": "載入中...",
+                        "sInfoThousands": "",
+                        "oPaginate": { "sFirst": "首頁", "sPrevious": "上頁", "sNext": "下頁", "sLast": "末頁" },
+                        "oAria": { "sSortAscending": ": 以升序排列此列", "sSortDescending": ": 以降序排列此列" }
+                    },
+                    "pagingType": "full_numbers",
+                    "paging": false,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": false,
+                    "info": true,
+                    "autoWidth": false,
+                    "bAutoWidth": false,
+                    "responsive": true,
+                    "pageLength": 10,
+                    "processing": true,
+                    "deferRender": true,
+                    "stateSave": false,
+                    "destroy": true,
+                    "dom": "lfrtip",
+                    //"columnDefs": [{
+                    //    targets: [5, 6],
+                    //    orderable: false
+                    //}],
+                    /*  "order": [[0, "desc"]]*/
+                })
+            })
+        </script>
+
+        <script>
+            var sidstr='';
+            function delconfirm(sid) {
+                sidstr = sid;
+                toastr.warning("確認要刪除？<br/><button type='button' class='btn btn-danger' value='yes'>刪除</button>")
+            }
+            toastr.options = {
+                closeButton: true,
+                debug: false,
+                progressBar: true,
+                positionClass: "toast-top-center",
+                onclick: function (toastr) {
+                  const  value = toastr.target.value
+                    if (value == 'yes')
+                        $('#delform' + sidstr).submit();
+                }
+            }
+        </script>
+    }

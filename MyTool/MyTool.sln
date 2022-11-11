@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTool", "MyTool\MyTool.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileHelper", "FileHelper\FileHelper.csproj", "{FE09D50D-A9B3-4341-8A7E-91C29AD378A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeakHelper", "WeakHelper\WeakHelper.csproj", "{C4B64C64-5706-4682-863D-0992F1093E9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeakHelper", "WeakHelper\WeakHelper.csproj", "{C4B64C64-5706-4682-863D-0992F1093E9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarouselTool", "CarouselTool\CarouselTool.csproj", "{E0F5FD26-A2B7-4B51-A85B-5FFD0078E7DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{C4B64C64-5706-4682-863D-0992F1093E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4B64C64-5706-4682-863D-0992F1093E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4B64C64-5706-4682-863D-0992F1093E9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0F5FD26-A2B7-4B51-A85B-5FFD0078E7DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0F5FD26-A2B7-4B51-A85B-5FFD0078E7DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0F5FD26-A2B7-4B51-A85B-5FFD0078E7DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0F5FD26-A2B7-4B51-A85B-5FFD0078E7DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
