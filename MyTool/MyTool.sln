@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeakHelper", "WeakHelper\We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarouselTool", "CarouselTool\CarouselTool.csproj", "{E0F5FD26-A2B7-4B51-A85B-5FFD0078E7DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLFolder", "SQLFolder\SQLFolder.csproj", "{84426D79-2D0F-4A05-8978-5C86C9DA3D81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQLFolder", "SQLFolder\SQLFolder.csproj", "{84426D79-2D0F-4A05-8978-5C86C9DA3D81}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "20230608 DelegatePic", "..\..\project\20230608 DelegatePic\20230608 DelegatePic\20230608 DelegatePic\20230608 DelegatePic.csproj", "{6AC2DB49-6A5C-45F8-A3A4-87AA32B5D4E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{84426D79-2D0F-4A05-8978-5C86C9DA3D81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84426D79-2D0F-4A05-8978-5C86C9DA3D81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84426D79-2D0F-4A05-8978-5C86C9DA3D81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AC2DB49-6A5C-45F8-A3A4-87AA32B5D4E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AC2DB49-6A5C-45F8-A3A4-87AA32B5D4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AC2DB49-6A5C-45F8-A3A4-87AA32B5D4E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AC2DB49-6A5C-45F8-A3A4-87AA32B5D4E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
