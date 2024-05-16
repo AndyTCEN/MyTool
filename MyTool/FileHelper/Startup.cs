@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UploadHelper.Unit.SaveFileByBsae64Unit;
 
 namespace UploadHelper
 {
@@ -24,6 +25,7 @@ namespace UploadHelper
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<ISaveFileService, SaveFileByBase64Service>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -12,9 +12,9 @@ fileInput.addEventListener('change', (e) => {
     const reader = new FileReader();
     reader.onloadend = () => {
         // Use a regex to remove data url part
-        const base64String = reader.result
-            .replace('data:', '')
-            .replace(/^.+,/, '');
+        const base64String = reader.result;
+            //.replace('data:', '')
+            //.replace(/^.+,/, '');
         fileInputTo.value = base64String;
         console.log(base64String);
         // Logs wL2dvYWwgbW9yZ...

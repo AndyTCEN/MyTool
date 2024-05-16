@@ -20,9 +20,11 @@ namespace UploadHelper.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly ISaveFileService _saveFileService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IWebHostEnvironment webHostEnvironment, ISaveFileService saveFileService)
         {
             _logger = logger;
+            _webHostEnvironment = webHostEnvironment;
+            _saveFileService = saveFileService;
         }
 
         public IActionResult Index()
@@ -33,8 +35,8 @@ namespace UploadHelper.Controllers
         [HttpPost]
         public IActionResult Index(string filename)
         {
-            string fileName = "test.jpg";
-            string uploadFolder = Path.Combine("D:", $"test",Guid.NewGuid().ToString());            
+            string fileName = DateTime.Now.ToString("yyyyMMddhhhmmsssfff");
+            //string uploadFolder = Path.Combine("D:", $"test",Guid.NewGuid().ToString());            
             string base64str = filename;
             _saveFileService.UpLoadFile(fileName, base64str);
             return View();
