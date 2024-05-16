@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31727.386
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTool", "MyTool\MyTool.csproj", "{F2DEBEE1-14A2-4646-979A-DB8F0F62ADC0}"
 EndProject
@@ -14,6 +14,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQLFolder", "SQLFolder\SQLFolder.csproj", "{84426D79-2D0F-4A05-8978-5C86C9DA3D81}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "20230608 DelegatePic", "20230608 DelegatePic\20230608 DelegatePic\20230608 DelegatePic\20230608 DelegatePic.csproj", "{5F3EA47A-0DF3-46BE-88AF-B79985199C2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaskHelper", "MaskHelper\MaskHelper.csproj", "{CC8B4B3E-8E94-4CD5-9588-0561265E4080}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaskHelperUnitTest", "MaskHelperUnitTest\MaskHelperUnitTest.csproj", "{489EF6B8-EE57-43FF-8B9E-994AAD22C51D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{5F3EA47A-0DF3-46BE-88AF-B79985199C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F3EA47A-0DF3-46BE-88AF-B79985199C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F3EA47A-0DF3-46BE-88AF-B79985199C2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC8B4B3E-8E94-4CD5-9588-0561265E4080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC8B4B3E-8E94-4CD5-9588-0561265E4080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC8B4B3E-8E94-4CD5-9588-0561265E4080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC8B4B3E-8E94-4CD5-9588-0561265E4080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{489EF6B8-EE57-43FF-8B9E-994AAD22C51D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{489EF6B8-EE57-43FF-8B9E-994AAD22C51D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{489EF6B8-EE57-43FF-8B9E-994AAD22C51D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{489EF6B8-EE57-43FF-8B9E-994AAD22C51D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
